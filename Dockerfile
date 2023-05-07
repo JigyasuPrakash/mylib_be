@@ -9,6 +9,6 @@ ADD Gemfile /mylib_be/Gemfile
 ADD Gemfile.lock /mylib_be/Gemfile.lock
 
 RUN bundle install
-RUN rake db:migrate
+RUN rails db:migrate
 
 ADD . /mylib_be
