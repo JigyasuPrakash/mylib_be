@@ -1,0 +1,29 @@
+version: '1'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mylib
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+
+  app:
+    build: .
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    volumes:
+      - ".:/mylib_be"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DB_USER: root
+      DB_NAME: mylib
+      DB_PASSWORD: password
+      DB_HOST: db
