@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   # POST /books
   def create
     @book = Book.new(book_params)
-
+    @book.update(author_ids: params[:authors].permit![:ids])
     if @book.save
       render json: @book, status: :created, location: @book
     else
@@ -38,6 +38,11 @@ class BooksController < ApplicationController
     @book.destroy
   end
 
+  def get_book_authors
+    book = Book.includes(:authors).find(params[:id])
+    render json: { book: book, authors: book.authors}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
@@ -46,6 +51,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.fetch(:book, {})
+      params.require(:book).permit(:book_title, :price, :level)
     end
 end

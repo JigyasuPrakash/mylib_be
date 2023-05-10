@@ -37,6 +37,11 @@ class AuthorsController < ApplicationController
     @author.destroy
   end
 
+  def get_author_books
+    author = Author.includes(:books).find(params[:id])
+    render json: {author: author, books: author.books}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_author
@@ -45,6 +50,6 @@ class AuthorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def author_params
-      params.fetch(:author, {})
+      params.require(:author).permit(:first_name, :last_name, :date_of_birth)
     end
 end
