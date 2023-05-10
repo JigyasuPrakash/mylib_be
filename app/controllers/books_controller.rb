@@ -3,8 +3,7 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
-
+    @books = Book.all.as_json.each {|book| book["author_ids"] = Book.find(book["id"]).author_ids}
     render json: @books
   end
 
