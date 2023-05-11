@@ -2,6 +2,9 @@
 
  This repository contains source code of mylib_be. For demonstrating many to many relationship between authors and books.
 
+## Dependency
+- <a href="https://github.com/JigyasuPrakash/mylib_fe.git">mylib_fe</a> (React JS frontend application)
+
 ## Installation using docker
 ``` bash
 $ git clone https://github.com/JigyasuPrakash/mylib_be.git
