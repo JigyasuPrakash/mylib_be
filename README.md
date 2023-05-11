@@ -8,6 +8,8 @@ $ git clone https://github.com/JigyasuPrakash/mylib_be.git
 
 $ cd ./mylib_be
 
+$ rails db:migrate
+
 $ docker-compose up
 ```
 
@@ -18,6 +20,8 @@ $ git clone https://github.com/JigyasuPrakash/mylib_be.git
 $ cd ./mylib_be
 
 $ bundle install
+
+$ rails db:migrate
 
 $ rails s -p 3001
 ```
